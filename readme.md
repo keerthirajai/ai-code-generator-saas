@@ -1,126 +1,127 @@
-# Vibe Coding — Prototype
+AI Code Generator SaaS
 
-**Author:** Keerthi Raj  
-**Role:** AI Intern Candidate — Submission for “Lovable clone: Vibe Coding” challenge  
+Generate clean HTML & CSS from natural language prompts using AI.
 
----
+Built with n8n + Google Gemini API + lightweight frontend.
 
-## 📌 What this is
-A prototype web app that generates HTML + CSS from a plain-English “vibe” prompt using an **n8n workflow** + **Google Gemini API**.  
+⸻
 
-Users type a description such as:  
+💡 Overview
 
-> “A large rounded blue button that says *Click Me* and changes to a lighter blue on hover.”  
+AI Code Generator is a system that converts plain-English UI descriptions into usable HTML & CSS code.
 
-The system responds with generated HTML/CSS code.  
+Example prompt:
 
----
+“A large rounded blue button that says Click Me and changes to a lighter blue on hover.”
 
-## 🏗️ Architecture
+➡️ Output: Ready-to-use HTML & CSS.
 
-- **Frontend:**  
-  Single `index.html` file (TailwindCSS + vanilla JS).  
-  - Text input for “vibe” prompt.  
-  - Sends request to n8n webhook.  
-  - Displays generated HTML/CSS in a code box.  
+This project explores how AI can reduce frontend development friction by converting intent directly into code.
 
-- **Backend (n8n Workflow):**  
-  1. **Webhook node** → Receives prompt from frontend (`?prompt=...`).  
-  2. **HTTP Request node** → Sends the prompt to Gemini API.  
-  3. **Respond to Webhook node** → Returns Gemini’s response back to frontend.  
+⸻
 
-- **AI:**  
-  Google Gemini (Generative Language API).  
+🏗️ Architecture
 
----
+🔹 Frontend
+	•	Single index.html (TailwindCSS + vanilla JS)
+	•	Input field for natural language prompts
+	•	Sends requests to n8n webhook
+	•	Displays generated HTML/CSS output
 
-## 🌐 Live Demo (Frontend only)
+🔹 Backend (n8n Workflow)
+	1.	Webhook node → Receives prompt (?prompt=...)
+	2.	HTTP Request node → Sends prompt to Gemini API
+	3.	Respond to Webhook node → Returns generated code
 
-GitHub Pages:  
-👉 https://<your-username>.github.io/Vibe-Coding-Prototype/  
+🔹 AI
+	•	Google Gemini (Generative Language API)
 
-⚠️ **Note:** The frontend is live, but the backend (n8n) is running locally on my machine.  
-For a working end-to-end demo, see the “Run locally” or “ngrok" .  
+⸻
 
----
+💡 Use Cases
+	•	Rapid UI prototyping
+	•	Generate frontend components instantly
+	•	Speed up SaaS development
+	•	Automate frontend workflows
+	•	Learn HTML/CSS through AI-generated examples
 
-## 📂 Files in this repo
+⸻
 
-- `index.html` → static frontend UI  
-- `workflow.json` → exported n8n workflow (API key replaced with placeholder `YOUR_API_KEY_HERE`)  
-- `README.md` → documentation (this file)  
-- (optional) `screenshots/` → demo images  
+🌐 Live Demo (Frontend only)
 
----
+👉 https://.github.io/Vibe-Coding-Prototype/
 
-## ▶️ How to Run Locally
+⚠️ Note:
+Frontend is live, but backend (n8n) runs locally.
+Use local setup or ngrok for full functionality.
 
-1. Serve the frontend:
-   ```bash
-   python -m http.server 8000
-   # Open http://localhost:8000/index.html 
+📸 Demo
 
-2. Run n8n (Docker):
+Prompt Input
+n8n Workflow
+Output Result
 
+📂 Files in this repo
+	•	index.html → Frontend UI
+	•	workflow.json → n8n workflow (API key removed)
+	•	README.md → Documentation
+	•	Screenshots → Demo visuals
+
+▶️ How to Run Locally
+
+1. Serve Frontend
+python -m http.server 8000
+# Open http://localhost:8000/index.html
+2. Run n8n (Docker)
 docker-compose up -d
 # or
 docker run -it --rm -p 5678:5678 n8nio/n8n
+3. Import Workflow
+	•	Open n8n
+	•	Import workflow.json
 
+4. Connect Backend
 
-3. Import workflow.json into n8n (Workflows → Import).
-
-4. In the frontend (index.html), set backend URL to:
-
+Set webhook URL in frontend:
 http://localhost:5678/webhook/<your-webhook-id>
+5. Run
+	•	Enter prompt
+	•	Click “Generate Code”
 
-
-5. Type a prompt and click Generate Code.
-
+⸻
 
 ⚡ Temporary Live Demo (ngrok)
 
-To let others test without local setup:
-
-Install ngrok → https://ngrok.com/
-
-Run:
-
+To expose backend publicly:
 ngrok http 5678
-
-
-Copy the HTTPS URL (e.g. https://abc123.ngrok.app).
-
-Build full webhook URL:
-
+Example:
 https://abc123.ngrok.app/webhook/<your-webhook-id>
 
+Paste this into frontend → works globally.
 
-Paste this into the frontend backend field → works from anywhere.
+⚠️ Free ngrok URLs change every session.
 
-⚠️ ngrok free URLs change each session. Use this only for temporary demo.
-
-
+⸻
 
 🔍 Notes & Limitations
+	•	Output may include extra wrappers (<iframe>, <html>, <body>)
+	•	No post-processing currently
+	•	Backend not deployed permanently
 
-Gemini sometimes wraps outputs in <iframe> or includes <html>/<body> tags.
+⸻
 
-For this prototype, the raw output is returned directly.
+🛣️ Roadmap
+	•	Deploy backend (Render / Railway)
+	•	Clean HTML/CSS output automatically
+	•	Add live preview inside UI
+	•	Support JavaScript generation
+	•	Save & share generated snippets
+	•	Build reusable component library
 
-A future improvement would add a cleaning step in n8n to strip wrappers and return pure HTML/CSS.
-
-🚀 Future Improvements
-
-Add cleaning/post-processing node to always return clean snippets.
-
-Deploy n8n to a cloud host (Render/Railway) for a persistent public backend.
-
-Support JavaScript generation and live preview inside frontend.
-
-Store past generations and allow users to copy/share code snippets.
-
-📞 Contact
+👤 Author
 
 Keerthi Raj
-Email: keerthirajprofessional@gmail.com
+Building AI SaaS & Automation Tools
 
+📧 keerthirajprofessional@gmail.com
+:::
